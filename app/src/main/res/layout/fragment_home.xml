@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:gravity="center"
+        tools:ignore="UselessParent">
+
+        <ImageView
+            android:id="@+id/logoImageView"
+            android:layout_width="180dp"
+            android:layout_height="180dp"
+            android:src="@drawable/logonormal_transparent"
+            android:layout_marginBottom="15dp" />
+
+        <TextView
+            android:id="@+id/textViewTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/msgpreparer"
+            android:textSize="32sp"
+            android:textStyle="bold"
+            android:layout_marginBottom="30dp"/>
+
+        <Button
+            android:id="@+id/buttonContacts"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/contacts"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"
+            android:layout_marginTop="20dp" />
+
+        <Button
+            android:id="@+id/buttonMessages"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/messages"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"
+            android:layout_marginTop="10dp" />
+
+        <Button
+            android:id="@+id/buttonActions"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/actions"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"
+            android:layout_marginTop="10dp" />
+
+        <TextView
+            android:id="@+id/footerText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Cette application a été réalisé comme projet à Sorbonne Université et permet :"
+            android:textColor="#808080"
+            android:layout_marginTop="25dp"
+            android:layout_marginLeft="10dp"/>
+
+
+        <TextView
+            android:id="@+id/footerText2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="- Afficher liste des contacts\n- Envoyer un SMS rapidement (spam)\n- Programmer l'envoi d'un SMS\n- Activer l'auto-réponse sur des contacts spécifiques"
+            android:textColor="#808080"
+            android:layout_marginTop="5dp"
+            android:layout_marginLeft="5dp"/>
+
+        <TextView
+            android:id="@+id/footerText3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Si vous rencontrez des bugs ou souhaitez de nouvelles fonctionnalités, vous pouvez me contacter !"
+            android:textColor="#808080"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="10dp"/>
+
+    </LinearLayout>
+</RelativeLayout>

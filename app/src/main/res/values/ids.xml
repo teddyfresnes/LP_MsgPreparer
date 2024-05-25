@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <item name="text_view_empty_list" type="id" />
+    <item name="recycler_view_messages" type="id" />
+    <item name="edit_text_message" type="id" />
+    <item name="button_add_message" type="id" />
+</resources>

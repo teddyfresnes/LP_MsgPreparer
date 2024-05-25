@@ -1,0 +1,97 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/text_view_title1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="16dp"
+        android:text="Actions des messages"
+        android:textSize="18sp"
+        android:textStyle="bold" />
+
+    <Spinner
+        android:id="@+id/spinner_contacts"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/text_view_title1"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="16dp"
+        android:background="@android:color/white"
+        android:gravity="center_horizontal"
+        android:minHeight="48dp"
+        android:padding="8dp" />
+
+    <Button
+        android:id="@+id/button_spam_contact"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Spam contact"
+        android:layout_below="@id/spinner_contacts"
+        android:layout_marginTop="8dp"
+        android:layout_centerHorizontal="true"/>
+
+    <Button
+        android:id="@+id/button_schedule_message"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/button_spam_contact"
+        android:layout_marginTop="0dp"
+        android:text="Programmer un message"
+        android:layout_centerHorizontal="true"/>
+
+    <TextView
+        android:id="@+id/text_view_title2"
+        android:layout_below="@+id/button_schedule_message"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="70dp"
+        android:layout_marginEnd="25dp"
+        android:layout_marginBottom="14dp"
+        android:text="Auto-réponse"
+        android:textSize="18sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/text_view_auto_reply_desc"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/text_view_title2"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="2dp"
+        android:text="Attention, le répondeur SMS automatique ne peut pas fonctionner avec les protocoles RCS Google Messages, Samsung Messages et autres."
+        android:textSize="12sp"
+        android:textColor="#808080"
+        android:layout_centerHorizontal="true"
+        android:gravity="center"/>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/text_view_auto_reply_desc"
+        android:layout_marginTop="4dp"
+        android:layout_centerHorizontal="true"
+        android:orientation="horizontal"
+        android:gravity="center_vertical">
+
+        <TextView
+            android:id="@+id/text_view_auto_reply"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Activer l'auto-réponse"
+            android:textSize="16sp"/>
+
+        <CheckBox
+            android:id="@+id/check_box_auto_reply"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="4dp"
+            android:layout_margin="0dp"/>
+    </LinearLayout>
+
+</RelativeLayout>

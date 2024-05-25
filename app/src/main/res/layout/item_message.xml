@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:padding="8dp">
+
+    <TextView
+        android:id="@+id/text_view_message_preview"
+        android:layout_width="0dp"
+        android:layout_weight="1"
+        android:layout_height="wrap_content"
+        android:maxLines="1"
+        android:ellipsize="end"
+        android:text="Message preview..."
+        android:textColor="#808080"
+        android:textSize="16sp"/>
+
+    <ImageView
+        android:id="@+id/image_view_delete"
+        android:layout_width="32dp"
+        android:layout_height="32dp"
+        android:src="@drawable/delete"
+        android:contentDescription="Delete message"/>
+
+    <CheckBox
+        android:id="@+id/check_box_auto_reply"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+
+
+    <CheckBox
+        android:id="@+id/check_box_spam"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+
+
+</LinearLayout>
