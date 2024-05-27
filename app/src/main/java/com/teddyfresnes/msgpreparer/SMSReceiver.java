@@ -42,7 +42,7 @@ public class SMSReceiver extends BroadcastReceiver {
                     }
 
                     String messageBody = fullMessage.toString();
-                    String messageId = sender + messageBody.hashCode(); // Unique identifier for the message using hash code
+                    String messageId = sender + messageBody.hashCode();
                     long currentTime = System.currentTimeMillis();
 
                     //  clean up old messages
@@ -73,7 +73,7 @@ public class SMSReceiver extends BroadcastReceiver {
                             if (autoReplyMessage != null) {
                                 Log.d(TAG, "Message de réponse automatique trouvé: " + autoReplyMessage.getText());
                                 sendSMS(sender, autoReplyMessage.getText());
-                                Log.d(TAG, "SMS de réponse automatique envoyé à " + sender);
+                                Log.d(TAG, "SMS de réponse automatique envoyé à " + sender + " : " + autoReplyMessage.getText());
                             } else {
                                 Log.d(TAG, "Aucun message de réponse automatique trouvé.");
                             }
@@ -95,6 +95,8 @@ public class SMSReceiver extends BroadcastReceiver {
     }
 
     private boolean isContactChecked(SharedPreferences sharedPreferences, String sender) {
+        String sender_without_prefix = sender.startsWith("+33") ? "0" + sender.substring(3) : sender;
+
         Map<String, ?> allEntries = sharedPreferences.getAll();
         for (String key : allEntries.keySet()) {
             if (key.startsWith("checkbox_")) {
@@ -103,7 +105,7 @@ public class SMSReceiver extends BroadcastReceiver {
                 if (isChecked) {
                     String contactInfo = key.substring("checkbox_".length());
                     Log.d(TAG, "Vérification de la clé: " + key + ", contactInfo: " + contactInfo);
-                    if (contactInfo.equals(sender)) {
+                    if (contactInfo.equals(sender) || contactInfo.equals(sender_without_prefix)) {
                         Log.d(TAG, "Contact " + sender + " trouvé dans les préférences");
                         return true;
                     }
@@ -113,6 +115,7 @@ public class SMSReceiver extends BroadcastReceiver {
         Log.d(TAG, "Contact " + sender + " non trouvé dans les préférences");
         return false;
     }
+
 
 
     private void loadMessages(Context context) {
@@ -133,7 +136,6 @@ public class SMSReceiver extends BroadcastReceiver {
             String messageText = sharedPreferences.getString("message_" + i, "");
             Log.d("LoadMessages", "Message " + i + ": " + messageText);
             if (!messageText.isEmpty()) {
-                // Utiliser les positions des cases cochées pour déterminer si chaque message est marqué comme spam ou autoreply
                 boolean isAutoReply = i == autoReplyCheckedPosition;
                 boolean isSpam = i == spamCheckedPosition;
                 messageList.add(new Message(messageText, isAutoReply, isSpam));
@@ -169,7 +171,12 @@ public class SMSReceiver extends BroadcastReceiver {
 
     private void sendSMS(String phoneNumber, String message) {
         SmsManager smsManager = SmsManager.getDefault();
-        smsManager.sendTextMessage(phoneNumber, null, message, null, null);
+        try {
+            smsManager.sendTextMessage(phoneNumber, null, message, null, null);
+            Log.d(TAG, "SMS envoyé à " + phoneNumber + " : " + message);
+        } catch (Exception e) {
+            Log.e(TAG, "Erreur lors de l'envoi du SMS à " + phoneNumber + ": " + e.getMessage());
+        }
     }
 
     private void cleanUpOldMessages(long currentTime) {

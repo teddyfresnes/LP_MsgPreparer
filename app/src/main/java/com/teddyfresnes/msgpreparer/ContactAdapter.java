@@ -60,6 +60,7 @@ public class ContactAdapter extends RecyclerView.Adapter<ContactAdapter.ViewHold
             textViewPhoneNumber = itemView.findViewById(R.id.text_view_phone_number);
             checkBoxSelect = itemView.findViewById(R.id.check_box_select);
 
+            // gere le changement d'etat des checkbox
             checkBoxSelect.setOnCheckedChangeListener((buttonView, isChecked) -> {
                 int position = getAdapterPosition();
                 if (position != RecyclerView.NO_POSITION) {
@@ -77,6 +78,7 @@ public class ContactAdapter extends RecyclerView.Adapter<ContactAdapter.ViewHold
             checkBoxSelect.setChecked(contact.isSelected());
         }
 
+        // sauvegarde des etats des cases a cocher
         private void saveCheckboxState(String phoneNumber, boolean isChecked) {
             SharedPreferences sharedPreferences = itemView.getContext().getSharedPreferences("checkbox_states", Context.MODE_PRIVATE);
             SharedPreferences.Editor editor = sharedPreferences.edit();

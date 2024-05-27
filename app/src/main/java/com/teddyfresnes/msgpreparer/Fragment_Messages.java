@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -55,21 +56,29 @@ public class Fragment_Messages extends Fragment {
         messageAdapter = new MessageAdapter(requireContext(), messageList);
         recyclerView.setAdapter(messageAdapter);
 
+        // gerer la gestion de l'ajout d'un nouveau msg
         buttonAddMessage.setOnClickListener(v -> {
             String messageText = editTextMessage.getText().toString().trim();
             if (!messageText.isEmpty()) {
-                Message newMessage = new Message(messageText, false, false);
-                messageList.add(newMessage);
-                messageAdapter.notifyDataSetChanged(); // Ajout de cette ligne pour mettre à jour la liste
-                saveMessages();
-                editTextMessage.setText("");
-                updateEmptyListVisibility();
+                // check la longueur du msg pour eviter futurs probleme d'envoi
+                if (messageText.length() > 160) {
+                    // si le msg contient trop de caractere on informe l'user
+                    Toast.makeText(getContext(), "Le message dépasse la limite de 160 caractères.", Toast.LENGTH_SHORT).show();
+                } else { // sinon on ajoute
+                    Message newMessage = new Message(messageText, false, false);
+                    messageList.add(newMessage);
+                    messageAdapter.notifyDataSetChanged();
+                    saveMessages();
+                    editTextMessage.setText("");
+                    updateEmptyListVisibility();
+                }
             }
         });
 
         updateEmptyListVisibility();
     }
 
+    // importer les msg des sharedpreferences
     private void loadMessages() {
         SharedPreferences sharedPreferences = requireContext().getSharedPreferences("message_preferences", Context.MODE_PRIVATE);
         int messageCount = sharedPreferences.getInt("message_count", 0);
@@ -81,6 +90,7 @@ public class Fragment_Messages extends Fragment {
         }
     }
 
+    // save des modifs des messages
     private void saveMessages() {
         SharedPreferences sharedPreferences = requireContext().getSharedPreferences("message_preferences", Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
@@ -92,6 +102,7 @@ public class Fragment_Messages extends Fragment {
         editor.apply();
     }
 
+    // pour actualiser l'affichage
     private void updateEmptyListVisibility() {
         if (messageList.isEmpty()) {
             textViewEmptyList.setVisibility(View.VISIBLE);

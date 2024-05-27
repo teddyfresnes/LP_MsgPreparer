@@ -56,6 +56,7 @@ public class Fragment_Contacts extends Fragment {
         contactAdapter = new ContactAdapter(requireContext(), contactList);
         recyclerView.setAdapter(contactAdapter);
 
+        // on redemande les perms si non accordé dans le mainactivity par erreur
         if (ContextCompat.checkSelfPermission(requireContext(), Manifest.permission.READ_CONTACTS)
                 != PackageManager.PERMISSION_GRANTED) {
             requestPermission();
@@ -82,6 +83,7 @@ public class Fragment_Contacts extends Fragment {
         }
     }*/
 
+    // importer les co,tacts depuis les sharedPreferences
     private void loadContacts() {
         Cursor cursor = requireContext().getContentResolver().query(
                 ContactsContract.CommonDataKinds.Phone.CONTENT_URI,
